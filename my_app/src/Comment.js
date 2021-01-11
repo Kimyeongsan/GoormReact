@@ -42,9 +42,30 @@ const styles = {
 
 class Comment extends React.Component {
 
+    constructor(props){
+        super(props);
+    }
+
+
+    //5-2 lifeCycle 메소드
+    componentDidMount(){
+        {this.props. id}
+        console.log('componentDidMount() called.');
+    }
+
+    componentDidUpdate() {
+        {this.props. id}
+        console.log('componentDidUpdate() called.');
+    }
+
+    componentWillUnmount() {
+        {this.props. id}
+        console.log('componentWillUnmount() called.');
+    }
+
     render() {
         const {name, content} = this.props;
-        
+
         return (
             <div style = {styles.root}>
                 <div style = {styles.imageContainer}>

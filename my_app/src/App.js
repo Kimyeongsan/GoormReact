@@ -3,32 +3,25 @@ import logo from './logo.svg';
 import './App.css';
 import Comment from './Comment'; // 4강 add
 
-const comentsFromServer = [
-  { name: 'Kim San', content: 'My comment1' },
-  { name: 'Lee San', content: '한글 만세!' },
-  { name: 'Pack San', content: 'My comment3' }
-];
-
-var timer;
-
-
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     // 5강 add : state
     this.state = {
-      comments: [],
+      comments: [
+        { id : 1, name: 'Kim San', content: 'My comment1' },
+        { id : 2, name: 'Lee San', content: '한글 만세!' },
+        { id : 3, name: 'Pack San', content: 'My comment3' }
+      ],
     };
   }
 
-  // 1초마다 하나씩 index 출력
   componentDidMount() {
     let comments = this.state.comments;
     timer = setInterval(() => {
-      if (comments.length < comentsFromServer.length) {
-        let index = comments.length;
-        comments.push(comentsFromServer[index]);
+      if (comments.length > 0) {
+        comments.pop();
         this.setState({
           comments : comments
         });
@@ -60,6 +53,8 @@ class App extends React.Component {
           {comments.map((comment, index) => {
             return (
               <Comment
+                key={comment.id}
+                id={comment.id}
                 name={comment.name}
                 content={comment.content} />
             )
